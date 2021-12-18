@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_gym_check_in" model="ir.actions.act_window">
+        <field name="name">Check In</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gym.check.in</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <record id="action_gym_access" model="ir.actions.act_window">
+        <field name="name">Acessos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">gym.check.in</field>
+        <field name="view_mode">tree</field>
+        <field name="limit">20</field>
+        <field name="context">{'search_default_today_date': 1}</field>
+    </record>
+
+    <record id="view_gym_check_in_form" model="ir.ui.view">
+        <field name="name">gym.check.in.form</field>
+        <field name="model">gym.check.in</field>
+        <field name="arch" type="xml">
+            <form create="false" edit="false" string="Check In">
+                <header>
+                    <button id="button_check_in" name="action_check_in" string=""
+                            class="fa fa-sign-in oe_highlight btn-success"
+                            type="object" attrs="{'invisible':[('current_status', '!=', 'AUTHORIZED')]}"/>
+                    <button name="cancel" string="Discard" special="cancel" class="btn btn-secondary o_form_button_cancel"/>
+                </header>
+                <sheet>
+                    <widget name="web_ribbon" title="Autorizado"
+                            attrs="{'invisible':[('current_status', '!=', 'AUTHORIZED')]}"/>
+                    <widget name="web_ribbon" title="Recusado" bg_color="bg-danger"
+                            attrs="{'invisible':[('current_status', '!=', 'REFUSED')]}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name_description" readonly="1" style="color:red;"
+                                   attrs="{'invisible':[('client_id', '!=', False)]}"/>
+                            <field name="name_description" readonly="1"
+                                   attrs="{'invisible':[('client_id', '=', False)]}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="client_code" default_focus="1"/>
+                            <field name="client_id" options="{'no_open': 1, 'no_create': 1}"/>
+                            <field name="current_status" invisible="1"/>
+                            <field name="last_visit" attrs="{'invisible':[('last_visit', '=', False)]}"/>
+                            <field name="total_visit" attrs="{'invisible':[('total_visit', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="image" widget="image" nolabel="1" readonly="1"
+                                       options='{"size": [150, 140]}'/>
+                            </group>
+                        </group>
+                    </group>
+                    <separator string="Atenção" style="color:red;font-size:medium;"
+                               attrs="{'invisible':[('current_status', '!=', 'REFUSED')]}"/>
+                    <p class="text-muted" attrs="{'invisible':[('current_status', '!=', 'REFUSED')]}"
+                       style="font-size:medium;">
+                        Membro Recusado. Favor entrar em contacto com a administração.
+                    </p>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_gym_access_tree" model="ir.ui.view">
+        <field name="name">gym.check.in.tree</field>
+        <field name="model">gym.check.in</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" string="Lista de Acessos">
+                <field name="client_id" widget="many2onebutton"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <button name="action_check_out" string="" type="object"
+                        class="fa fa-sign-out oe_highlight btn-primary"
+                        confirm="Deseja registar saída para este membro?"
+                        attrs="{'invisible':[('check_out', '=', True)]}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_access_search" model="ir.ui.view">
+        <field name="name">gym.check.in.search</field>
+        <field name="model">gym.check.in</field>
+        <field name="arch" type="xml">
+            <search string="Acessos">
+                <field name="client_id"/>
+                <filter string="Today" name="today_date"
+                        domain="[('check_in', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),
+                        ('check_in', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:59:59'))]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

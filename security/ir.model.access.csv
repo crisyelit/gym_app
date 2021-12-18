@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gym_client,access.gym.client,model_gym_client,gym_app.group_gym_manager,1,1,1,0
+access_gym_client_admin,access.gym.client.admin,model_gym_client,gym_app.group_gym_administrator,1,1,1,1
+access_gym_billing,access.gym.billing,model_gym_billing,gym_app.group_gym_manager,1,1,1,0
+access_gym_check_in,access.gym.check.in,model_gym_check_in,gym_app.group_gym_manager,1,1,1,0
+access_gym_check_in_admin,access.gym.check.in.admin,model_gym_check_in,gym_app.group_gym_administrator,1,1,1,1

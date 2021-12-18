@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="report_gym_client_card" model="ir.actions.report">
+        <field name="name">Cartão</field>
+        <field name="model">gym.client</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gym_app.report_gym_client_card</field>
+        <field name="report_file">gym_app.report_gym_client_card</field>
+        <field name="binding_model_id" ref="model_gym_client"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

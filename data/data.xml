@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+
+		<record id="seq_gym_client" model="ir.sequence">
+			<field name="name">Client Sequence</field>
+			<field name="code">gym.client</field>
+			<field name="prefix">PRF/%(range_year)s/</field>
+			<field name="padding">5</field>
+			<field name="company_id" eval="False"/>
+		</record>
+
+<!--		<record id="action_gym_block_user_scheduler" model="ir.cron">-->
+<!--			<field name="name">Archive the Users</field>-->
+<!--			<field name="type">ir.actions.server</field>-->
+<!--			<field name="model_id" ref="model_gym_client"/>-->
+<!--			<field name="state">code</field>-->
+<!--			<field name="code">model.archive_users()</field>-->
+<!--			<field name="interval_number">70</field>-->
+<!--			<field name="interval_type">days</field>-->
+<!--			<field name="numbercall">-1</field>-->
+<!--		</record>-->
+
+	</data>
+</odoo>

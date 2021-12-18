@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_gym_root"
+              name="Ginásio"
+              sequence="10"/>
+
+    <menuitem id="menu_gym_members"
+              name="Membros"
+              parent="menu_gym_root"
+              sequence="0"/>
+
+    <menuitem id="menu_gym_clients"
+              name="Clientes"
+              parent="menu_gym_members"
+              action="action_gym_client"
+              sequence="0"/>
+
+    <menuitem id="menu_gym_invoicing"
+              name="Faturação"
+              parent="menu_gym_root"
+              sequence="1"/>
+
+    <menuitem id="menu_gym_invoices"
+              name="Faturas"
+              parent="menu_gym_invoicing"
+              action="action_gym_invoice"
+              sequence="0"/>
+
+    <menuitem id="menu_gym_payments"
+              name="Pagamentos"
+              parent="menu_gym_invoicing"
+              action="action_gym_payments"
+              sequence="1"/>
+
+    <menuitem id="menu_gym_billing"
+              name="Cobrança"
+              parent="menu_gym_invoicing"
+              action="action_gym_billing"
+              sequence="2"/>
+
+    <menuitem id="menu_gym_access"
+              name="Acesso"
+              parent="menu_gym_root"
+              sequence="3"/>
+
+    <menuitem id="menu_gym_check_in"
+              name="Check-in"
+              parent="menu_gym_access"
+              action="action_gym_check_in"
+              sequence="0"/>
+
+    <menuitem id="menu_gym_access_list"
+              name="Acessos"
+              parent="menu_gym_access"
+              action="action_gym_access"
+              sequence="1"/>
+
+    <menuitem id="menu_gym_configurations"
+              name="Configuration"
+              parent="menu_gym_root"
+              sequence="4"/>
+
+    <menuitem id="menu_gym_settings"
+              name="Settings"
+              parent="menu_gym_configurations"
+              action="action_gym_settings"
+              sequence="0"/>
+
+</odoo>

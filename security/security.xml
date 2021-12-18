@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_gym_app" model="ir.module.category">
+        <field name="name">Gym Management</field>
+        <field name="description">Gym Management Application</field>
+    </record>
+
+    <record id="group_gym_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_gym_app"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+<!--    <field name="implied_ids" eval="[(4, ref('base.group_system'))]"/> -->
+    </record>
+
+    <record id="group_gym_administrator" model="res.groups">
+        <field name="name">Gym Administrator</field>
+        <field name="category_id" ref="module_category_gym_app"/>
+<!--        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
+            <field name="implied_ids" eval="[(4, ref('gym_app.group_gym_manager')), (4, ref('base.group_system'))]"/>
+    </record>
+
+</odoo>
